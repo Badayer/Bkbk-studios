@@ -44,3 +44,10 @@ header{position:sticky;top:0}.intro-language{position:absolute;right:25px;top:20
 body[data-mode=night] #intro{background:#eee7e0;color:#66524b}
 body[data-mode=night] #intro .intro-scene{background:radial-gradient(ellipse at 72% 17%,#fff8ec,transparent 48%),radial-gradient(ellipse at 15% 76%,#e1c8c8,transparent 42%),linear-gradient(115deg,#ede7e1,#fffaf5 50%,#e7ddd6)}
 @media(max-width:600px){#intro .intro-logo{width:84vw;max-height:32svh}#intro .intro-copy{padding:24px 18px}#intro .intro-copy>p{font-size:9px;letter-spacing:1.4px}}
+
+/* BKBK's bespoke pastel marble welcome composition */
+#intro .intro-scene:after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 90px 155px at 10% 28%,#87938230 5%,transparent 85%),radial-gradient(ellipse 120px 70px at 86% 76%,#87938229 10%,transparent 90%),radial-gradient(circle at 12% 78%,#e7bfc65e 0 17px,transparent 55px),radial-gradient(circle at 89% 17%,#e8b9c25e 0 24px,transparent 75px);filter:blur(9px)}
+#intro .intro-brand{display:flex;flex-direction:column;align-items:center;justify-content:center;margin:8px 0 35px;line-height:1.1;color:#6b554c}
+#intro .intro-brand strong{font:normal clamp(78px,14vw,185px)/.95 Georgia,'Times New Roman',serif;letter-spacing:clamp(5px,1.6vw,21px);text-shadow:0 4px 32px #b8a1a06b}
+#intro .intro-brand span{font:normal clamp(11px,1.5vw,18px) Georgia,serif;letter-spacing:clamp(6px,1.5vw,18px);margin-top:24px}
+@media(max-width:480px){#intro .intro-brand strong{font-size:clamp(66px,17vw,100px);letter-spacing:5px}#intro .intro-brand span{letter-spacing:8px}}
