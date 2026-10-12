@@ -1,0 +1,5 @@
+(()=>{'use strict';const capable=matchMedia('(any-hover: hover) and (any-pointer: fine)');const glow=document.createElement('span');glow.className='bkbk-pointer-glow';glow.setAttribute('aria-hidden','true');document.body.append(glow);
+function hide(){glow.classList.remove('hover','pressed')}
+document.addEventListener('pointermove',e=>{if(!capable.matches||e.pointerType!=='mouse'){hide();return}const host=e.target.closest('dialog[open]')||document.body;if(glow.parentElement!==host)host.append(glow);glow.style.left=e.clientX+'px';glow.style.top=e.clientY+'px';glow.classList.toggle('hover',!!e.target.closest('a,button,[role=button],select'));},{passive:true});
+document.addEventListener('pointerdown',e=>{if(!capable.matches||e.pointerType!=='mouse')return;glow.classList.remove('pressed');void glow.offsetWidth;glow.classList.add('pressed')},{passive:true});glow.addEventListener('animationend',()=>glow.classList.remove('pressed'));document.addEventListener('pointerout',e=>{if(!e.relatedTarget)hide()});window.addEventListener('blur',hide);document.addEventListener('visibilitychange',hide);capable.addEventListener('change',hide);
+})();

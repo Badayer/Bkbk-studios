@@ -124,12 +124,6 @@
   const about=document.querySelector('.portrait-scene');scenes.push(new Scene(about,[about.querySelector('img'),about.querySelector('.night')],['studioDay','studioNight']));
   const film=document.querySelector('.film');scenes.push(new Scene(film,[film.querySelector('img')],['night']));
   function setLights(){}
-  // Fine-pointer native cursor maintains the exact hotspot; the ring is decorative only.
-  if(matchMedia('(hover:hover) and (pointer:fine)').matches){
-    const ring=document.createElement('span');ring.className='cursor-ring';document.body.append(ring);
-    document.addEventListener('pointermove',e=>{ring.style.left=e.clientX+'px';ring.style.top=e.clientY+'px';ring.classList.toggle('over',!!e.target.closest('a,button'))},{passive:true});
-    document.addEventListener('pointerdown',()=>{ring.classList.remove('tap');void ring.offsetWidth;ring.classList.add('tap')},{passive:true});
-  }
   // These are the exact URLs already present in the owner's original repository.
   const channels=[['Instagram','https://www.instagram.com/bkbkstudios/','<rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".7"/>'],['TikTok','https://www.tiktok.com/@bkbk.studios','<path d="M14 3v12a4 4 0 1 1-4-4M14 3c1 4 3 5 6 5"/>'],['YouTube','https://youtube.com/@bkbkstudios','<rect x="2" y="5" width="20" height="14" rx="4"/><path d="m10 9 5 3-5 3z"/>']];
   for(const box of document.querySelectorAll('.social-links'))box.innerHTML=channels.map(([label,url,shape])=>`<a href="${url}" target="_blank" rel="noopener noreferrer" aria-label="${label}"><svg viewBox="0 0 24 24" aria-hidden="true">${shape}</svg><span>${label}</span></a>`).join('');

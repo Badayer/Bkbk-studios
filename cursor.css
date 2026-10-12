@@ -1,0 +1,12 @@
+@media(any-hover:hover) and (any-pointer:fine){
+html,body,body *,body *::before,body *::after{cursor:url("assets/floral-cursor.png") 1 0,auto!important}
+input:not([type=button]):not([type=submit]):not([type=checkbox]):not([type=radio]),textarea,[contenteditable=true]{cursor:text!important}
+button:disabled,[aria-disabled=true]{cursor:not-allowed!important}
+[aria-busy=true]{cursor:progress!important}
+.bkbk-pointer-glow{display:block;position:fixed;left:0;top:0;width:36px;height:36px;margin:-18px 0 0 -18px;border-radius:50%;background:#e8b5bd38;border:1px solid #d59ca34d;pointer-events:none!important;z-index:2147483647;opacity:0}
+.bkbk-pointer-glow.hover{opacity:1}
+.bkbk-pointer-glow.pressed{opacity:1;animation:bkbk-pointer-click .55s ease-out}
+@keyframes bkbk-pointer-click{from{box-shadow:0 0 0 0 #dba0aa88;transform:scale(.8)}to{box-shadow:0 0 0 15px #dba0aa00;transform:scale(1.2)}}
+}
+@media(prefers-reduced-motion:reduce){.bkbk-pointer-glow{display:none!important}}
+@media(any-hover:none){.bkbk-pointer-glow{display:none}}
