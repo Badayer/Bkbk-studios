@@ -3,120 +3,140 @@
     "file": "06ABEA2D-CB2B-4285-8949-471FB7CF6080(1).jpeg",
     "width": 1536,
     "height": 1024,
-    "sha256": "1f1e4f235bd3058a19ef9e69112cac722d9c899fb520f6c50777f9836b71ec88"
+    "sha256": "1f1e4f235bd3058a19ef9e69112cac722d9c899fb520f6c50777f9836b71ec88",
+    "role": "Desktop day terrace \u2014 homepage"
   },
   {
     "file": "0A236BF1-BBF6-426B-9D2B-28229AF65565.png",
     "width": 232,
     "height": 313,
-    "sha256": "c96bda1796031bcae670cdb32c83e0928a4ec53be4a72d4db334fc2e18579e3c"
+    "sha256": "c96bda1796031bcae670cdb32c83e0928a4ec53be4a72d4db334fc2e18579e3c",
+    "role": "Small notebook crop \u2014 reference only; original larger scene used"
   },
   {
     "file": "1E261A7D-1307-4047-8CFD-F3FEE563EF84.png",
     "width": 1024,
     "height": 348,
-    "sha256": "65af82f256fc2c404533a4240eee00e529efb6a80d6cfe70526405f405c8a6fb"
+    "sha256": "65af82f256fc2c404533a4240eee00e529efb6a80d6cfe70526405f405c8a6fb",
+    "role": "Wide lounge strip \u2014 reference only"
   },
   {
     "file": "1E4EA7F5-E226-4C48-8E13-1DEA080E4612(1).jpeg",
     "width": 1536,
     "height": 1024,
-    "sha256": "c921d88406817c43d1c39272a618c0e4ce76e654a6f79d6bebfc5f8298104d76"
+    "sha256": "c921d88406817c43d1c39272a618c0e4ce76e654a6f79d6bebfc5f8298104d76",
+    "role": "Desktop night terrace \u2014 homepage and Films"
   },
   {
     "file": "26DA0104-0F7C-48E8-BDC8-61A80989F4E2.png",
     "width": 1024,
     "height": 86,
-    "sha256": "b76e6f4663458b5af9167b3682a6db0f456d601ed4678f5cdc5c7510de2162a7"
+    "sha256": "b76e6f4663458b5af9167b3682a6db0f456d601ed4678f5cdc5c7510de2162a7",
+    "role": "Header screenshot \u2014 layout reference only, never used as navigation"
   },
   {
     "file": "2A3CF492-4A17-4B5F-B1E9-7C47D2DB2B24(1).jpeg",
     "width": 1016,
     "height": 1536,
-    "sha256": "8961210a26074a7be29873c60a75c938a6c07ce26293596f369ac9a9787bd755"
+    "sha256": "8961210a26074a7be29873c60a75c938a6c07ce26293596f369ac9a9787bd755",
+    "role": "Day notebook scene \u2014 About"
   },
   {
     "file": "683A0A0D-B236-4CF2-A224-F5B26533B6DF(1).jpeg",
     "width": 1536,
     "height": 1024,
-    "sha256": "5c6a67e5a9aff7dcd8a86ddf3e1a838987fd1a3c40956937f35f5a8dfd84fadd"
+    "sha256": "5c6a67e5a9aff7dcd8a86ddf3e1a838987fd1a3c40956937f35f5a8dfd84fadd",
+    "role": "Night notebook scene \u2014 About"
   },
   {
     "file": "6B3C5550-E45C-4385-ABBE-B011931A020E.png",
     "width": 1024,
     "height": 246,
-    "sha256": "6cfd8a09a42a497e77b44e52c4b85380fd6fe1b14f6c6c1d34f8a52241e103cd"
+    "sha256": "6cfd8a09a42a497e77b44e52c4b85380fd6fe1b14f6c6c1d34f8a52241e103cd",
+    "role": "Wide daytime strip \u2014 reference only"
   },
   {
     "file": "795C2233-FE31-4FB3-9D28-C1D8A2925F84(1).jpeg",
     "width": 1024,
     "height": 1536,
-    "sha256": "68db72460bf5f6375b53e2a8755555f1c173fd40797e37cdaa1d0adfe896cd18"
+    "sha256": "68db72460bf5f6375b53e2a8755555f1c173fd40797e37cdaa1d0adfe896cd18",
+    "role": "Dubai daytime notebook scene \u2014 alternate approved reference"
   },
   {
     "file": "7EDF2192-B1B6-4CB5-87E1-1BE960473836(1).jpeg",
     "width": 1024,
     "height": 1536,
-    "sha256": "79c95ac8dac4088255d3d8c0e34f7bd42dbcde82845fa64724c44b5ee0681756"
+    "sha256": "79c95ac8dac4088255d3d8c0e34f7bd42dbcde82845fa64724c44b5ee0681756",
+    "role": "Portrait day terrace \u2014 responsive homepage (duplicate originals retained)"
   },
   {
     "file": "7EDF2192-B1B6-4CB5-87E1-1BE960473836.jpeg",
     "width": 1024,
     "height": 1536,
-    "sha256": "79c95ac8dac4088255d3d8c0e34f7bd42dbcde82845fa64724c44b5ee0681756"
+    "sha256": "79c95ac8dac4088255d3d8c0e34f7bd42dbcde82845fa64724c44b5ee0681756",
+    "role": "Portrait day terrace \u2014 responsive homepage (duplicate originals retained)"
   },
   {
     "file": "8899442F-A924-4006-881F-B169245898FC(1).jpeg",
     "width": 1024,
     "height": 1536,
-    "sha256": "da49ec5b3a684fef9e49beb73628b622567319377b8d20952b12f7d9fe09be32"
+    "sha256": "da49ec5b3a684fef9e49beb73628b622567319377b8d20952b12f7d9fe09be32",
+    "role": "Moodboard collage \u2014 reference only, not rendered as webpage"
   },
   {
     "file": "8899442F-A924-4006-881F-B169245898FC(2).jpeg",
     "width": 1024,
     "height": 1536,
-    "sha256": "da49ec5b3a684fef9e49beb73628b622567319377b8d20952b12f7d9fe09be32"
+    "sha256": "da49ec5b3a684fef9e49beb73628b622567319377b8d20952b12f7d9fe09be32",
+    "role": "Moodboard collage \u2014 reference only, not rendered as webpage"
   },
   {
     "file": "8AD68C45-87C1-4F55-8F29-4D5C24EA2F2A.png",
     "width": 223,
     "height": 313,
-    "sha256": "e0dfd69c04911c4f3c956a386455611ac89c69fb8e8de4928b9431aed9da58ff"
+    "sha256": "e0dfd69c04911c4f3c956a386455611ac89c69fb8e8de4928b9431aed9da58ff",
+    "role": "Low-resolution Dubai crop \u2014 larger approved Dubai scene used"
   },
   {
     "file": "929D65DA-72B1-490E-9EFB-7631BDF0B9FC(1).jpeg",
     "width": 1024,
     "height": 1536,
-    "sha256": "8891a630d461a4c24740206cf0008df28ec1ab9572198fb409191258a39b1ca8"
+    "sha256": "8891a630d461a4c24740206cf0008df28ec1ab9572198fb409191258a39b1ca8",
+    "role": "Portrait night terrace \u2014 responsive homepage"
   },
   {
     "file": "9E9ED6AD-32BE-47F4-B343-DD3A1C654CCE.jpeg",
     "width": 1312,
     "height": 1199,
-    "sha256": "29cf21ed81c0a19e0ee99d34bfd1829951732534c9d6fd7804b55248ccd61da8"
+    "sha256": "29cf21ed81c0a19e0ee99d34bfd1829951732534c9d6fd7804b55248ccd61da8",
+    "role": "Brand board \u2014 exact logo and floral brand crops"
   },
   {
     "file": "A7CA57B7-E8CC-435F-927E-CD776E06DF2C.jpeg",
     "width": 1536,
     "height": 1024,
-    "sha256": "d3c044cb0c2869d42112ea9856e991e855c8c13bccc6e57f8ef08d943d88817e"
+    "sha256": "d3c044cb0c2869d42112ea9856e991e855c8c13bccc6e57f8ef08d943d88817e",
+    "role": "Approved floral cursor sheet \u2014 extracted original pointer"
   },
   {
     "file": "C7663218-E003-4B2D-A438-29522F16D6C1(1).jpeg",
     "width": 1024,
     "height": 1536,
-    "sha256": "fb7181f22207062ea61ea54a70c9ddbedf9d30d7fecbc60b0044b8f986816b66"
+    "sha256": "fb7181f22207062ea61ea54a70c9ddbedf9d30d7fecbc60b0044b8f986816b66",
+    "role": "Dubai scene \u2014 visual portfolio"
   },
   {
     "file": "EFF125C3-1420-4E38-A243-B524ED9C1333.jpeg",
     "width": 864,
     "height": 1536,
-    "sha256": "8f8a4d7a856b5a66c860faf77903e8a1ddb91f49e97120656d45b8979f95c414"
+    "sha256": "8f8a4d7a856b5a66c860faf77903e8a1ddb91f49e97120656d45b8979f95c414",
+    "role": "Final Bee portrait \u2014 existing repository bee.jpg retained"
   },
   {
     "file": "FC4AC213-F075-4DBE-B162-61C5520742F7.png",
     "width": 226,
     "height": 313,
-    "sha256": "63ad331022064af27944c3fa06a51a3ba263edef6d5be9d60db33c4507e40cad"
+    "sha256": "63ad331022064af27944c3fa06a51a3ba263edef6d5be9d60db33c4507e40cad",
+    "role": "Low-resolution printed art crop \u2014 reference only"
   }
 ]
