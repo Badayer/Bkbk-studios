@@ -19,3 +19,28 @@ header{position:sticky;top:0}.intro-language{position:absolute;right:25px;top:20
 .gallery .art[data-publications] img{width:100%;height:auto;aspect-ratio:1;object-fit:cover}.art[data-publications] small{display:block;color:var(--muted);font-size:12px;margin-top:5px}
 
 #publications-dialog{width:min(900px,94vw);max-height:90svh;overflow:auto}.publications-close{position:sticky;top:0;z-index:10;display:flex;justify-content:flex-end;margin:0;padding:8px;background:var(--paper)}.publications-close .close{position:static;width:48px;height:48px}.book-covers{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:24px 0}.book-covers figure{margin:0}.book-covers img{width:100%;height:auto}.book-covers figcaption{font-size:12px;color:var(--muted);text-align:center;margin-top:8px}@media(max-width:520px){.book-covers{grid-template-columns:1fr}#publications-dialog .dialog-copy{padding:15px 20px 30px}}
+
+
+/* Soft marble welcome screen — BKBK Studios */
+#intro{background:#f4efe9;color:#66524b}
+#intro .intro-scene{
+ background:
+ radial-gradient(ellipse at 72% 17%,rgba(255,252,234,.95),transparent 46%),
+ radial-gradient(ellipse at 15% 76%,rgba(215,171,177,.28),transparent 38%),
+ repeating-linear-gradient(157deg,transparent 0 110px,rgba(164,151,141,.055) 112px,transparent 117px,transparent 235px),
+ linear-gradient(115deg,#eee7e2,#fffaf5 48%,#e6dfd7);
+}
+#intro .intro-scene::before{
+ content:"";position:absolute;inset:0;pointer-events:none;
+ background:linear-gradient(105deg,rgba(255,255,255,.65),transparent 28%,rgba(255,255,255,.42) 61%,transparent);
+ opacity:.75;
+}
+#intro .intro-copy{isolation:isolate;text-shadow:0 1px 12px #fff9}
+#intro .intro-logo{box-shadow:none;filter:drop-shadow(0 10px 22px #72564b2b);width:min(520px,76vw);max-height:38svh}
+#intro .intro-copy>p{color:#74615a;letter-spacing:2.3px}
+#intro .intro-copy .button.light{background:#70574e;color:#fffaf4;border-color:#70574e}
+#intro #skip-intro{color:#70574e}
+#intro .intro-language{color:#70574e;border-color:#a48c8270}
+body[data-mode=night] #intro{background:#eee7e0;color:#66524b}
+body[data-mode=night] #intro .intro-scene{background:radial-gradient(ellipse at 72% 17%,#fff8ec,transparent 48%),radial-gradient(ellipse at 15% 76%,#e1c8c8,transparent 42%),linear-gradient(115deg,#ede7e1,#fffaf5 50%,#e7ddd6)}
+@media(max-width:600px){#intro .intro-logo{width:84vw;max-height:32svh}#intro .intro-copy{padding:24px 18px}#intro .intro-copy>p{font-size:9px;letter-spacing:1.4px}}
