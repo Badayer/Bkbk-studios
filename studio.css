@@ -6,3 +6,6 @@
 header{position:sticky;top:0}.intro-language{position:absolute;right:25px;top:20px;z-index:2;padding:10px 16px;border:1px solid #f5e9da70;font-size:13px}body[data-mode=night] .intro-scene{background-image:linear-gradient(#21170b66,#21170b88),url('assets/terrace-night.jpg')}
 @media(prefers-reduced-motion:reduce){.living-layer,.scene-lights,.cursor-ring{display:none!important}}
 .scene-lights span{background:radial-gradient(#ffcf8e55,transparent 70%)}@keyframes candlelight{0%,100%{opacity:.43}21%{opacity:.76}49%{opacity:.38}71%{opacity:.69}90%{opacity:.49}}
+
+
+#product-cards{display:block}.digital-cover{display:block;width:min(100%,420px);margin:auto;position:relative;border-radius:14px;overflow:hidden;box-shadow:0 16px 45px #0002;text-decoration:none}.digital-cover img{display:block;width:100%;height:auto}.digital-cover>span{display:block;padding:20px;background:var(--paper,#f3eee5);color:var(--ink,#34372d);font-size:1.5rem;text-align:center}.digital-cover small{display:block;font-size:1rem;margin-top:8px}.digital-cover:focus-visible{outline:3px solid #93855b;outline-offset:6px}
