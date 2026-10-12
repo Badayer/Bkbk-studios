@@ -83,10 +83,14 @@
       for(const region of this.regions||[]){
         const pc=this.pctx;pc.clearRect(0,0,this.patch.width,this.patch.height);
         if(region.type==='water'){
-          for(let y=region.top;y<region.bottom;y+=3){const dx=Math.sin(y*.16+time*.0007)*.75+Math.sin(y*.067-time*.00043)*.4;pc.drawImage(im,0,y,im.naturalWidth,3,dx,y,im.naturalWidth,3)}
+          for(let y=region.top;y<region.bottom;y+=3){const dx=Math.sin(y*.12+time*.00065)*2.1+Math.sin(y*.045-time*.00032)*.9;pc.drawImage(im,0,y,im.naturalWidth,3,dx,y,im.naturalWidth,3)}
         }else{
-          const amp=region.type==='curtain'?.6:.4;const dx=Math.sin(time*.00045)*amp+Math.sin(time*.00019)*amp*.4;
-          pc.drawImage(im,dx,0);
+          const amp=region.type==='curtain'?3.4:1.6;
+          for(let y=region.top;y<region.bottom;y+=4){
+            const depth=(y-region.top)/Math.max(1,region.bottom-region.top);
+            const dx=(Math.sin(time*.00048-depth*1.8)+.35*Math.sin(time*.00021+depth))*amp*depth;
+            pc.drawImage(im,0,y,im.naturalWidth,4,dx,y,im.naturalWidth,4);
+          }
         }
         pc.globalCompositeOperation='destination-in';pc.drawImage(region.mask,0,0);pc.globalCompositeOperation='source-over';
         c.drawImage(this.patch,this.ox,this.oy,this.patch.width*this.scale,this.patch.height*this.scale);
@@ -102,7 +106,7 @@
   function setLights(){
     const im=hero.querySelector(mode==='night'?'.night':'.day'),r=hero.getBoundingClientRect();if(!im.naturalWidth)return;
     const scale=Math.max(r.width/im.naturalWidth,r.height/im.naturalHeight),x0=(r.width-im.naturalWidth*scale)/2,y0=(r.height-im.naturalHeight*scale)/2;
-    const mobile=im.naturalHeight>im.naturalWidth;const points=mobile?(mode==='night'?[[46,396,32],[298,903,28],[510,869,20],[795,300,54]]:[[133,1080,26],[254,841,24],[18,485,25]]):mode==='night'?[[205,689,32],[178,194,36],[562,532,25],[1383,538,25],[1422,699,29],[1233,103,62]]:[[239,771,26],[1276,710,25],[800,571,50]];
+    const mobile=im.naturalHeight>im.naturalWidth;const points=mobile?(mode==='night'?[[46,396,32],[298,903,28],[510,869,20],[795,300,54]]:[[133,1080,26],[254,841,24],[18,485,25]]):mode==='night'?[[205,689,32],[178,194,36],[562,532,25],[1383,538,25],[1422,699,29],[1233,103,62]]:[[239,771,26],[1276,710,25],[800,444,80],[800,571,50]];
     lights.replaceChildren();for(const [x,y,size] of points){const s=document.createElement('span');s.style.cssText=`left:${x0+x*scale}px;top:${y0+y*scale}px;width:${size*scale}px;height:${size*scale}px;animation-delay:-${x/300}s`;lights.append(s)}
   }
   new ResizeObserver(setLights).observe(hero);hero.querySelectorAll('img').forEach(im=>im.addEventListener('load',setLights));
