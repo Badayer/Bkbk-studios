@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#eae2d7"><title>BKBK Game World | Avatar Lab</title>
+<style>
+:root{color-scheme:light;--ink:#292922;--muted:#706d66;--paper:#f6f2ec;--line:#ddd5ca;--olive:#515e45}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.5 system-ui,-apple-system,sans-serif}header{padding:18px clamp(18px,4vw,54px);border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:12px}header strong{letter-spacing:.13em}header a{color:var(--olive);text-decoration:none;font-size:13px}.shell{max-width:1250px;margin:0 auto;padding:28px 18px 50px}.eyebrow{text-transform:uppercase;letter-spacing:.2em;font-size:11px;color:var(--olive);font-weight:700}h1{font:clamp(34px,5vw,60px)/1.08 Georgia,serif;letter-spacing:-.035em;margin:10px 0}p{color:var(--muted);max-width:670px}.layout{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(300px,.95fr);gap:20px;margin-top:26px}.stage{background:radial-gradient(circle at 50% 45%,#faf8f2,#d4d8cf);border:1px solid var(--line);border-radius:20px;min-height:560px;position:relative;overflow:hidden}canvas{width:100%;height:560px;display:block;touch-action:pan-y}.stage-label{position:absolute;top:18px;left:18px;font-size:12px;letter-spacing:.09em;color:#596354}.stage-foot{position:absolute;bottom:14px;left:0;right:0;text-align:center;color:#5a6455;font-size:12px;pointer-events:none}.panel{border:1px solid var(--line);border-radius:20px;background:#fffdf9;padding:25px}.tabs{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0}.tabs button{background:#f5f0e8;border:1px solid var(--line);padding:10px 12px;border-radius:30px;font-size:13px}.tabs button[aria-selected=true]{background:var(--olive);color:white;border-color:var(--olive)}button{cursor:pointer;font:inherit}button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #91a687;outline-offset:2px}.fields{display:grid;grid-template-columns:1fr 1fr;gap:16px}.field{min-width:0}.field label{display:block;font-weight:650;font-size:13px;margin-bottom:6px}select,input[type=range],input[type=text]{width:100%}select,input[type=text]{border:1px solid var(--line);border-radius:9px;padding:10px;background:white;color:var(--ink)}input[type=color]{width:100%;height:40px;border:1px solid var(--line);border-radius:8px;background:white}.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}.primary,.secondary{border-radius:10px;padding:12px 15px}.primary{background:var(--olive);border:1px solid var(--olive);color:white}.secondary{background:transparent;border:1px solid var(--line);color:var(--ink)}.note{font-size:12px;margin:18px 0 0}.status{font-size:13px;color:#465f3f;min-height:22px}.step{display:inline-block;background:#e6e9e1;border-radius:20px;padding:6px 10px;font-size:12px}.hidden{display:none!important}@media(max-width:760px){.layout{grid-template-columns:1fr}.stage{min-height:430px}canvas{height:430px}.panel{padding:18px}.fields{gap:12px}.shell{padding-top:20px}}
+</style></head><body>
+<header><strong>BKBK GAME WORLD</strong><a href="./index.html">← BKBK Studios</a></header>
+<main class="shell"><span class="eyebrow">BKBK ID / Character Studio</span><h1>Your world. Your character.</h1><p>Create your first avatar with no photo required. All options in this early preview are free. Your saved draft stays on this device for now.</p>
+<div class="layout"><section class="stage" aria-label="Interactive 3D avatar preview"><span class="stage-label">AVATAR LAB · EARLY PREVIEW</span><canvas id="scene" aria-label="3D avatar. Drag horizontally to rotate."></canvas><div class="stage-foot">Drag to rotate · Tap “Front view” to reset</div></section>
+<section class="panel"><span class="step">01 / Create your character</span><h2 style="font:28px Georgia,serif;margin:14px 0 4px">Make it yours.</h2><p style="font-size:13px">Choose details below. More realistic face sculpting, hairstyles and outfits will come in later versions.</p>
+<div class="field"><label for="avatarName">Character name</label><input id="avatarName" type="text" maxlength="30" value="My Avatar" autocomplete="off"></div>
+<div class="tabs" role="tablist"><button data-tab="face" role="tab" aria-selected="true">Face</button><button data-tab="body" role="tab" aria-selected="false">Body</button><button data-tab="style" role="tab" aria-selected="false">Style</button></div>
+<div class="fields" data-pane="face">
+<div class="field"><label for="skin">Skin tone</label><input id="skin" type="color" value="#bc8568"></div>
+<div class="field"><label for="eyes">Eye color</label><input id="eyes" type="color" value="#665b4d"></div>
+<div class="field"><label for="hair">Hair color</label><input id="hair" type="color" value="#352620"></div>
+<div class="field"><label for="hairStyle">Hairstyle</label><select id="hairStyle"><option value="long">Long</option><option value="bob">Bob</option><option value="short">Short</option></select></div>
+<div class="field"><label for="faceWidth">Face width</label><input id="faceWidth" type="range" min="80" max="120" value="100"></div>
+<div class="field"><label for="eyeSize">Eye size</label><input id="eyeSize" type="range" min="75" max="125" value="100"></div>
+</div>
+<div class="fields hidden" data-pane="body"><div class="field"><label for="height">Height</label><input id="height" type="range" min="85" max="115" value="100"></div><div class="field"><label for="build">Body build</label><input id="build" type="range" min="75" max="135" value="100"></div></div>
+<div class="fields hidden" data-pane="style"><div class="field"><label for="outfit">Outfit</label><select id="outfit"><option value="olive">Olive casual</option><option value="cream">Cream classic</option><option value="plum">Plum streetwear</option><option value="denim">Denim blue</option></select></div><div class="field"><label for="shoes">Shoes</label><select id="shoes"><option value="light">Light sneakers</option><option value="dark">Dark sneakers</option></select></div></div>
+<div class="actions"><button id="save" class="primary">Save draft on device</button><button id="front" class="secondary">Front view</button><button id="reset" class="secondary">Reset</button></div><p id="status" class="status" role="status"></p><p class="note">BKBK ID sign-up and cloud saving are not enabled in this preview. No photos, passwords or payment details are collected.</p>
+</section></div></main>
+<script type="module">
+import * as THREE from 'https://esm.sh/three@0.180.0';
+const $=id=>document.getElementById(id),fields=['avatarName','skin','eyes','hair','hairStyle','faceWidth','eyeSize','height','build','outfit','shoes'],key='bkbk-avatar-preview-v1';
+const defaults={avatarName:'My Avatar',skin:'#bc8568',eyes:'#665b4d',hair:'#352620',hairStyle:'long',faceWidth:'100',eyeSize:'100',height:'100',build:'100',outfit:'olive',shoes:'light'};
+let state={...defaults};try{const saved=JSON.parse(localStorage.getItem(key));if(saved&&typeof saved==='object')for(const k of fields)if(typeof saved[k]==='string')state[k]=saved[k]}catch{}
+for(const k of fields)$(k).value=state[k];
+const canvas=$('scene'),renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true});renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,2));renderer.outputColorSpace=THREE.SRGBColorSpace;
+const scene=new THREE.Scene(),camera=new THREE.PerspectiveCamera(33,1,.1,100);camera.position.set(0,1.55,7.9);camera.lookAt(0,1.45,0);
+scene.add(new THREE.HemisphereLight(0xffffff,0x9ca28d,2.15));const keyLight=new THREE.DirectionalLight(0xffffff,3);keyLight.position.set(-3,7,6);scene.add(keyLight);const rim=new THREE.DirectionalLight(0xf4e6cc,1.3);rim.position.set(3,3,-4);scene.add(rim);
+const floor=new THREE.Mesh(new THREE.CylinderGeometry(1.75,1.85,.12,56),new THREE.MeshStandardMaterial({color:0xc4c7b8,roughness:.9}));floor.position.y=-.13;scene.add(floor);
+const avatar=new THREE.Group();scene.add(avatar);
+const mat=(color,roughness=.85)=>new THREE.MeshStandardMaterial({color,roughness});const mesh=(geometry,material,parent,x=0,y=0,z=0)=>{const o=new THREE.Mesh(geometry,material);o.position.set(x,y,z);parent.add(o);return o};
+const sphere=(r,m,p,x,y,z,sx=1,sy=1,sz=1)=>{const a=mesh(new THREE.SphereGeometry(r,32,24),m,p,x,y,z);a.scale.set(sx,sy,sz);return a};
+function makeAvatar(){avatar.clear();const skin=mat(state.skin),hair=mat(state.hair),eye=mat(state.eyes,.4),white=mat('#fff7ee'),black=mat('#25221f'),lip=mat('#9a5e5d');
+const color={olive:'#59634d',cream:'#e6d8c5',plum:'#785b6a',denim:'#4e6a85'}[state.outfit]||'#59634d',fabric=mat(color),pants=mat('#393d3f'),shoe=mat(state.shoes==='dark'?'#393734':'#e5e0d7');
+const h=Number(state.height)/100,b=Number(state.build)/100,fw=Number(state.faceWidth)/100,es=Number(state.eyeSize)/100;
+const body=new THREE.Group();avatar.add(body);body.scale.y=h;
+const torso=sphere(.68,fabric,body,0,1.6,0,.72*b,1.02,.47);sphere(.43,fabric,body,0,1.12,0,.83*b,.67,.55);
+for(const sign of [-1,1]){const x=sign*.57*b;sphere(.22,fabric,body,x,1.85,0,.9,1.1,.95);const arm=mesh(new THREE.CylinderGeometry(.16,.13,1.03,24),fabric,body,x+sign*.11,1.35,0);arm.rotation.z=sign*.12;sphere(.14,skin,body,x+sign*.18,.79,0);mesh(new THREE.CylinderGeometry(.22*b,.18*b,.83,24),pants,body,sign*.25*b,.59,0);sphere(.25,shoe,body,sign*.25*b,.10,.13,1,.42,1.5)}
+mesh(new THREE.CylinderGeometry(.17,.18,.35,24),skin,body,0,2.34,0);
+const head=new THREE.Group();head.position.set(0,2.83,0);body.add(head);
+sphere(.51,skin,head,0,0,0,fw,1.15,.86);
+for(const sign of [-1,1]){sphere(.13,skin,head,sign*.5*fw,-.035,0,.48,.85,.6);sphere(.148,white,head,sign*.19,.055,.423,1.05,.72,.31);sphere(.096*es,eye,head,sign*.19,.052,.517,1,.92,.4);sphere(.049,black,head,sign*.19,.049,.551);sphere(.024,white,head,sign*.19-.029,.084,.57);const brow=sphere(.14,hair,head,sign*.19,.205,.421,1.05,.14,.48);brow.rotation.z=-sign*.1}
+sphere(.10,skin,head,0,-.108,.51,.8,1.05,1);sphere(.155,lip,head,0,-.292,.435,1,.23,.3);
+const cap=sphere(.515,hair,head,0,.25,-.06,1.04,.82,1.02);
+if(state.hairStyle==='long'||state.hairStyle==='bob'){const len=state.hairStyle==='long'?.83:.36;for(const sign of [-1,1])sphere(.24,hair,head,sign*.43,-.19-(len-.36)*.42,-.16,.72,len,.98);}
+if(state.hairStyle==='short')sphere(.48,hair,head,0,.37,-.09,1,.43,.98);
+avatar.position.y=.08;
+}
+function resize(){const r=canvas.getBoundingClientRect();renderer.setSize(r.width,r.height,false);camera.aspect=r.width/r.height;camera.updateProjectionMatrix()}window.addEventListener('resize',resize);resize();
+let drag=false,last=0;canvas.addEventListener('pointerdown',e=>{drag=true;last=e.clientX;canvas.setPointerCapture(e.pointerId)});canvas.addEventListener('pointerup',()=>drag=false);canvas.addEventListener('pointercancel',()=>drag=false);canvas.addEventListener('pointermove',e=>{if(drag){avatar.rotation.y+=(e.clientX-last)*.012;last=e.clientX}});
+for(const k of fields){$(k).addEventListener('input',()=>{state[k]=$(k).value;if(k!=='avatarName')makeAvatar()})}
+document.querySelectorAll('[data-tab]').forEach(tab=>tab.addEventListener('click',()=>{document.querySelectorAll('[data-tab]').forEach(t=>t.setAttribute('aria-selected',String(t===tab)));document.querySelectorAll('[data-pane]').forEach(p=>p.classList.toggle('hidden',p.dataset.pane!==tab.dataset.tab))}));
+$('save').onclick=()=>{try{localStorage.setItem(key,JSON.stringify(state));$('status').textContent='Draft saved on this device ✓'}catch{$('status').textContent='Could not save on this device.'}};
+$('front').onclick=()=>avatar.rotation.y=0;
+$('reset').onclick=()=>{state={...defaults};for(const k of fields)$(k).value=state[k];makeAvatar();$('status').textContent='Character reset. Save to keep these changes.'};makeAvatar();
+function tick(){requestAnimationFrame(tick);renderer.render(scene,camera)}tick();
+</script></body></html>
