@@ -15,3 +15,5 @@ header{position:sticky;top:0}.intro-language{position:absolute;right:25px;top:20
 
 @media(min-width:801px){[dir=rtl] .hero-copy{left:7%;right:auto;max-width:48%}}@media(max-width:800px){.video-scene video{object-position:90% center}.hero-copy,[dir=rtl] .hero-copy{left:6%;right:6%;max-width:88%}}
 @media(min-width:801px){.hero-bottom{right:190px}[dir=rtl] .hero-shade{transform:none}}
+
+.gallery .art[data-publications] img{width:100%;height:auto;aspect-ratio:1;object-fit:cover}.art[data-publications] small{display:block;color:var(--muted);font-size:12px;margin-top:5px}
