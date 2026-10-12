@@ -9,3 +9,9 @@ header{position:sticky;top:0}.intro-language{position:absolute;right:25px;top:20
 
 
 #product-cards{display:block}.digital-cover{display:block;width:min(100%,420px);margin:auto;position:relative;border-radius:14px;overflow:hidden;box-shadow:0 16px 45px #0002;text-decoration:none}.digital-cover img{display:block;width:100%;height:auto}.digital-cover>span{display:block;padding:20px;background:var(--paper,#f3eee5);color:var(--ink,#34372d);font-size:1.5rem;text-align:center}.digital-cover small{display:block;font-size:1rem;margin-top:8px}.digital-cover:focus-visible{outline:3px solid #93855b;outline-offset:6px}
+
+/* Cinematic day and night hero videos. */
+.video-scene video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;pointer-events:none}.hero-shade{background:linear-gradient(90deg,#17171199 0%,#17171155 40%,transparent 78%),linear-gradient(0deg,#17171180,transparent 38%)}.hero-copy{max-width:58%;text-shadow:0 2px 18px #0005}.hero-bottom{align-items:center;flex-wrap:wrap;gap:18px;right:5%}#hero-sound{color:inherit;font:inherit;padding:0;border-bottom:1px solid #ffffff65}@media(max-width:800px){.video-scene video{object-position:70% center}.hero-copy{top:12%;left:6%;right:6%;max-width:90%}.hero-copy h1{font-size:clamp(32px,7vw,48px)}.hero-bottom{bottom:90px;right:6%;gap:14px}.hero-bottom>span{display:block;font-size:10px;flex-basis:100%;max-width:none}.hero-shade{background:linear-gradient(180deg,#17171185,transparent 65%,#171711b3)}}
+
+@media(min-width:801px){[dir=rtl] .hero-copy{left:7%;right:auto;max-width:48%}}@media(max-width:800px){.video-scene video{object-position:90% center}.hero-copy,[dir=rtl] .hero-copy{left:6%;right:6%;max-width:88%}}
+@media(min-width:801px){.hero-bottom{right:190px}[dir=rtl] .hero-shade{transform:none}}

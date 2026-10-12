@@ -4,17 +4,18 @@
   const motionQuery = '(prefers-reduced-motion: reduce)';
   let reduce = matchMedia(motionQuery);
   let paused = storage.get('bkbk-motion', 'on') === 'off';
+  let motionOverride=false;
   const motionButton = document.querySelector('#motion');
   function motionState() {
     reduce = matchMedia(motionQuery);
-    const stopped = paused || reduce.matches;
+    const stopped = paused || (reduce.matches&&!motionOverride);
     document.body.classList.toggle('motion-paused', stopped);
     motionButton.textContent = t(stopped ? 'resumeMotion' : 'pauseMotion');
     motionButton.setAttribute('aria-pressed', String(stopped));
-    motionButton.disabled = reduce.matches;
+    motionButton.disabled = false;
     scenes.forEach(scene => stopped ? scene.stop() : scene.start());
   }
-  motionButton.onclick = () => { paused = !paused; storage.set('bkbk-motion', paused ? 'off' : 'on'); motionState(); };
+  motionButton.onclick = () => { const stopped=paused||(reduce.matches&&!motionOverride); paused=!stopped; motionOverride=true; storage.set('bkbk-motion', paused ? 'off' : 'on'); motionState(); };
   const scenes = [];
   // Source-space masks: [polygon, movement type]. The camera and architectural pixels never move.
   const masks = {
@@ -75,9 +76,9 @@
       });this.ctx.clearRect(0,0,this.canvas.width,this.canvas.height);
     }
     stop(){cancelAnimationFrame(this.raf);this.raf=0;this.ctx.clearRect(0,0,this.canvas.width,this.canvas.height)}
-    start(){if(this.raf||!this.visible||this.transitioning||paused||reduce.matches||document.hidden)return;this.raf=requestAnimationFrame(time=>this.draw(time))}
+    start(){if(this.raf||!this.visible||this.transitioning||paused||(reduce.matches&&!motionOverride)||document.hidden)return;this.raf=requestAnimationFrame(time=>this.draw(time))}
     draw(time){
-      this.raf=0;if(!this.visible||paused||reduce.matches||document.hidden)return;
+      this.raf=0;if(!this.visible||paused||(reduce.matches&&!motionOverride)||document.hidden)return;
       if(time-this.last<66){this.start();return}this.last=time;const im=this.image();if(!im.complete||!im.naturalWidth){this.start();return}
       const c=this.ctx; c.clearRect(0,0,this.canvas.width,this.canvas.height);
       for(const region of this.regions||[]){
@@ -98,18 +99,31 @@
       this.start();
     }
   }
-  const hero=document.querySelector('.scene');scenes.push(new Scene(hero,[hero.querySelector('.day'),hero.querySelector('.night')],['day','night']));
+  const hero=document.querySelector('.scene');
+  let soundEnabled=false;
+  const soundButton=document.querySelector('#hero-sound');
+  const videos=[...hero.querySelectorAll('video')];
+  const videoScene={
+    visible:true,transitioning:false,
+    resize(){},
+    stop(){videos.forEach(v=>v.pause())},
+    start(){
+      const selected=videos.find(v=>v.classList.contains(mode));
+      videos.forEach(v=>{if(v!==selected){v.pause();v.muted=true;}});
+      selected.muted=!soundEnabled;selected.volume=.35;
+      if(!selected.src){selected.src=selected.dataset.src;selected.load();}
+      if(paused||(reduce.matches&&!motionOverride)||document.hidden||!this.visible||this.transitioning)return;
+      const play=selected.play();if(play)play.catch(()=>{selected.muted=true;selected.play().catch(()=>{motionButton.textContent=t('resumeMotion')});});
+    }
+  };
+  scenes.push(videoScene);
+  new IntersectionObserver(entries=>{videoScene.visible=entries[0].isIntersecting;videoScene.visible?videoScene.start():videoScene.stop()}).observe(hero);
+  function soundState(){soundButton.textContent=t(soundEnabled?'heroSoundOff':'heroSoundOn');soundButton.setAttribute('aria-pressed',String(soundEnabled));}
+  soundButton.onclick=()=>{soundEnabled=!soundEnabled;soundState();videos.forEach(v=>v.muted=true);videoScene.start();};
+  document.addEventListener('bkbk:language',soundState);soundState();
   const about=document.querySelector('.portrait-scene');scenes.push(new Scene(about,[about.querySelector('img'),about.querySelector('.night')],['studioDay','studioNight']));
   const film=document.querySelector('.film');scenes.push(new Scene(film,[film.querySelector('img')],['night']));
-  // Source-aligned light pools, not new objects or flames.
-  const lights = document.createElement('div');lights.className='scene-lights';lights.setAttribute('aria-hidden','true');hero.append(lights);
-  function setLights(){
-    const im=hero.querySelector(mode==='night'?'.night':'.day'),r=hero.getBoundingClientRect();if(!im.naturalWidth)return;
-    const scale=Math.max(r.width/im.naturalWidth,r.height/im.naturalHeight),x0=(r.width-im.naturalWidth*scale)/2,y0=(r.height-im.naturalHeight*scale)/2;
-    const mobile=im.naturalHeight>im.naturalWidth;const points=mobile?(mode==='night'?[[46,396,32],[298,903,28],[510,869,20],[795,300,54]]:[[133,1080,26],[254,841,24],[18,485,25]]):mode==='night'?[[205,689,32],[178,194,36],[562,532,25],[1383,538,25],[1422,699,29],[1233,103,62]]:[[239,771,26],[1276,710,25],[800,444,80],[800,571,50]];
-    lights.replaceChildren();for(const [x,y,size] of points){const s=document.createElement('span');s.style.cssText=`left:${x0+x*scale}px;top:${y0+y*scale}px;width:${size*scale}px;height:${size*scale}px;animation-delay:-${x/300}s`;lights.append(s)}
-  }
-  new ResizeObserver(setLights).observe(hero);hero.querySelectorAll('img').forEach(im=>im.addEventListener('load',setLights));
+  function setLights(){}
   // Fine-pointer native cursor maintains the exact hotspot; the ring is decorative only.
   if(matchMedia('(hover:hover) and (pointer:fine)').matches){
     const ring=document.createElement('span');ring.className='cursor-ring';document.body.append(ring);
@@ -123,9 +137,10 @@
   document.addEventListener('bkbk:language',()=>{motionState();document.querySelectorAll('.social-links').forEach(e=>e.setAttribute('aria-label',t('socialLabel')))});
   document.addEventListener('visibilitychange',()=>{scenes.forEach(s=>document.hidden?s.stop():s.start())});
   const mediaWatcher=matchMedia(motionQuery);
-  mediaWatcher.addEventListener('change',motionState);
+  mediaWatcher.addEventListener('change',()=>{previousReduced=mediaWatcher.matches;motionOverride=false;motionState()});
   // A low-frequency fallback also catches restored-page media changes in older WebKit/Chromium.
   let previousReduced=mediaWatcher.matches;
-  setInterval(()=>{if(document.hidden)return;const current=matchMedia(motionQuery).matches;if(current!==previousReduced){previousReduced=current;motionState()}},750);
+  setInterval(()=>{if(document.hidden)return;const current=matchMedia(motionQuery).matches;if(current!==previousReduced){previousReduced=current;motionOverride=false;motionState()}},750);
   window.addEventListener('pageshow',motionState);motionState();setLights();
 })();
+
