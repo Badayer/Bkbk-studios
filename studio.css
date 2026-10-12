@@ -51,3 +51,7 @@ body[data-mode=night] #intro .intro-scene{background:radial-gradient(ellipse at 
 #intro .intro-brand strong{font:normal clamp(78px,14vw,185px)/.95 Georgia,'Times New Roman',serif;letter-spacing:clamp(5px,1.6vw,21px);text-shadow:0 4px 32px #b8a1a06b}
 #intro .intro-brand span{font:normal clamp(11px,1.5vw,18px) Georgia,serif;letter-spacing:clamp(6px,1.5vw,18px);margin-top:24px}
 @media(max-width:480px){#intro .intro-brand strong{font-size:clamp(66px,17vw,100px);letter-spacing:5px}#intro .intro-brand span{letter-spacing:8px}}
+
+/* Exact selected marble image takes precedence as soon as the asset is uploaded. */
+#intro .intro-scene{background-image:url('assets/welcome-marble.jpg'),radial-gradient(ellipse at 72% 17%,#fff8ec,transparent 48%),linear-gradient(115deg,#ede7e1,#fffaf5 50%,#e7ddd6);background-position:center;background-size:cover;background-repeat:no-repeat}
+body[data-mode=night] #intro .intro-scene{background-image:url('assets/welcome-marble.jpg'),linear-gradient(115deg,#ede7e1,#fffaf5 50%,#e7ddd6)}
