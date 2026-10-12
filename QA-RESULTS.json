@@ -1,0 +1,19 @@
+{
+  "passed": [
+    "Intro entry",
+    "12 viewport/language combinations without overflow; every navigation route",
+    "English/Arabic search, empty search results, service details",
+    "Product categories and real clipboard enquiry",
+    "Bee guide navigation",
+    "Artwork enlargement",
+    "Persistent language/mode; intro stays dismissed",
+    "Reduced motion and manual motion pause",
+    "No audio or sound control",
+    "No JavaScript errors or missing resources",
+    "Skip intro"
+  ],
+  "errors": [],
+  "failed": [],
+  "browser": "145.0.7632.6",
+  "note": "Chromium responsive simulation; not physical iOS Safari testing."
+}
