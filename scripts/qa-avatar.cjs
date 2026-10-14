@@ -5,7 +5,7 @@ const fs=require('node:fs'),path=require('node:path');
 const root=path.resolve(__dirname,'..');
 const read=(p)=>fs.readFileSync(path.join(root,p),'utf8');
 const js=read('avatar-room-preview.js');
-const bare=js.replace(/^import .+;\\s*$/gm,'');
+const bare=js.replace(/^import .+;\s*$/gm,'');
 new Function(bare);
 assert(js.includes("new GLTFLoader().load('assets/bkbk-avatar-'+sex+'.glb'"));
 assert(js.includes("bodyMesh.geometry.setAttribute('color'"));
