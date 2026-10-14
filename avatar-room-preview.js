@@ -67,12 +67,12 @@ function tintBase(){
    // subtle consistent lighting across shaded body geometry
    arr[i*3]=temp.r;arr[i*3+1]=temp.g;arr[i*3+2]=temp.b;
  }
- bodyMesh.geometry.setAttribute('color',new THREE.BufferAttribute(arr,3));
+ const colorAttribute=bodyMesh.geometry.getAttribute('color');
+ if(colorAttribute?.itemSize===3&&colorAttribute.count===pos.count){colorAttribute.array.set(arr);colorAttribute.needsUpdate=true}
+ else bodyMesh.geometry.setAttribute('color',new THREE.BufferAttribute(arr,3));
  if(!bodyMesh.material.userData.bkbkTint){
-   const previous=bodyMesh.material;
    bodyMesh.material=new THREE.MeshStandardMaterial({color:'#ffffff',vertexColors:true,roughness:.93,metalness:0,side:THREE.DoubleSide});
    bodyMesh.material.userData.bkbkTint=true;
-   if(previous&&previous.dispose)previous.dispose();
  }
  if(browsMesh)browsMesh.material=mat(state.hair);
  if(eyesMesh)eyesMesh.material=mat(state.eyes,.45);
