@@ -112,8 +112,8 @@ function createHair(){
 }
 
 function createClothing(){
- if(clothesGroup){root.remove(clothesGroup);clothesGroup.traverse(o=>{if(o.isMesh){o.geometry.dispose();o.material.dispose()}})}
- clothesGroup=new THREE.Group();root.add(clothesGroup);
+ if(clothesGroup){clothesGroup.parent?.remove(clothesGroup);clothesGroup.traverse(o=>{if(o.isMesh){o.geometry.dispose();o.material.dispose()}})}
+ clothesGroup=new THREE.Group();model.add(clothesGroup);
  const fabric=state.fabric,accent=state.accent;
  if(sex==='female'){
    if(state.outfit==='dress'){
