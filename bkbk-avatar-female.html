@@ -1,34 +1,57 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>BKBK Avatar Studio | Female Room</title><style>*{box-sizing:border-box}body{margin:0;background:#191917;color:#f7efe5;font:15px system-ui,-apple-system,sans-serif}header{padding:14px 22px;background:#211f1c;display:flex;align-items:center;justify-content:space-between;gap:16px}a{color:inherit;text-decoration:none}header strong{letter-spacing:.12em}main{text-align:center;padding:22px 16px 48px}h1{font:clamp(27px,5vw,44px) Georgia,serif}p{color:#d8cabc}.stage{width:min(96vw,calc(87dvh * 9 / 16),715px);aspect-ratio:9/16;max-height:87dvh;position:relative;overflow:hidden;margin:20px auto;background:#443e34;border:1px solid #777063;border-radius:12px}.stage img{width:100%;height:100%;object-fit:contain;position:absolute;inset:0}.stage img.night{opacity:0;transition:opacity .45s}body.night .stage img.night{opacity:1}button{border:1px solid #b9a892;background:#393630;color:inherit;border-radius:8px;padding:12px 18px;font:inherit}button:disabled{opacity:.65}a:focus-visible{outline:3px solid #e4c597}</style><style>
-/* In-room game interface. The approved character renderer will occupy the middle. */
-.stage{isolation:isolate}
-.game-ui{position:absolute;inset:0;z-index:3;pointer-events:none;font:13px system-ui,sans-serif}
-.game-ui button,.game-ui select,.game-ui input,.game-ui .game-panel{pointer-events:auto}
-.game-tools{position:absolute;left:8px;top:50%;transform:translateY(-50%);display:grid;gap:7px}
-.game-tools button{width:46px;height:46px;border-radius:50%;background:#efe5d9eb;color:#473a31;border:1px solid #cdb9a5;font-size:20px;padding:0}
-.game-tools button.active{background:#53604d;color:white}
-.game-panel{position:absolute;right:9px;bottom:12px;width:min(245px,65%);max-height:44%;overflow:auto;background:#f5ede1ed;color:#3d332b;border-radius:12px;padding:12px;text-align:left;box-shadow:0 8px 30px #0003}
-.game-panel[hidden]{display:none}
-.game-panel h2{font:19px Georgia,serif;margin:0 0 9px}.game-panel label{display:block;margin:9px 0 4px;font-size:12px}
-.game-panel select,.game-panel input{width:100%;padding:8px;border:1px solid #c8b5a3;border-radius:7px;color:#30271f;background:white}
-.game-panel button{margin-top:12px;padding:8px;background:#53604d;color:white;border-radius:7px}
-.game-note{position:absolute;top:12px;left:50%;transform:translateX(-50%);width:max-content;max-width:66%;background:#2b2824b8;color:#f6ede1;padding:7px 10px;border-radius:7px;font-size:11px}
-@media(max-width:480px){.game-tools button{width:38px;height:38px;font-size:17px}.game-panel{width:min(220px,70%);max-height:45%}}
-</style></head><body><header><strong>BKBK AVATAR STUDIO</strong><a href="bkbk-avatar-reception.html">← Reception</a></header><main><h1>Female Dressing Room</h1><p>Your dressing room · Avatar customization in development</p><div class="stage"><img src="assets/419E8041-867B-44AD-B17A-5C8B7BAABD12.png" alt="Female dressing room daytime interior"><img class="night" src="assets/5F60E49E-18EE-41D3-9A91-AFF8A390CA3A.png" alt="Female dressing room nighttime interior"><div class="game-ui">
-<div class="game-note">Character model awaiting art approval</div>
-<nav class="game-tools" aria-label="Avatar customization">
-<button type="button" data-category="face" aria-label="Face" title="Face">☺</button>
-<button type="button" data-category="skin" aria-label="Skin" title="Skin">◐</button>
-<button type="button" data-category="hair" aria-label="Hair" title="Hair">♛</button>
-<button type="button" data-category="makeup" aria-label="Makeup" title="Makeup">✦</button>
-<button type="button" data-category="outfit" aria-label="Outfits" title="Outfits">♧</button>
-<button type="button" data-category="accessories" aria-label="Accessories" title="Accessories">◇</button>
-</nav><div class="game-panel" id="game-panel" hidden><h2 id="game-category"></h2><div id="game-options"></div><button type="button" id="save-look">Save choices</button><p id="game-status" aria-live="polite" style="font-size:11px"></p></div>
-</div></div><button id="toggle" type="button" aria-pressed="false">☾ Night view</button></main><script>const toggle=document.getElementById('toggle');let night=false;try{night=localStorage.getItem('bkbk-mode')==='night'}catch{}function render(){document.body.classList.toggle('night',night);toggle.textContent=night?'☀ Day view':'☾ Night view';toggle.setAttribute('aria-pressed',String(night))}toggle.addEventListener('click',()=>{night=!night;try{localStorage.setItem('bkbk-mode',night?'night':'day')}catch{}render()});render();</script><script>
-(()=>{const groups={
-face:{'Face shape':['Oval','Round','Heart','Square'],'Eye shape':['Almond','Round','Hooded'],'Nose':['Soft','Straight','Defined'],'Lips':['Natural','Full','Defined']},
-skin:{'Skin tone':['Fair','Light','Medium','Tan','Deep'],'Body shape':['Slim','Regular','Curvy'],'Height':['Petite','Medium','Tall']},
-hair:{'Hair':['Long waves','Straight','Bob','Ponytail','Braids'],'Hair color':['Black','Dark brown','Chestnut','Blonde']},
-makeup:{'Makeup':['Natural','Soft glam','Evening'],'Lip color':['Nude','Rose','Berry']},
-outfit:{'Outfit':['Classic dress','Mukhawar','Abaya','Suit','Casual'],'Shoes':['Flats','Heels','Sneakers']},
-accessories:{'Accessories':['None','Earrings','Necklace','Bracelets','Hat','Hair accessory']}};let values={};try{values=JSON.parse(localStorage.getItem('bkbk-female-choices')||'{}')}catch{}const panel=document.getElementById('game-panel'),opts=document.getElementById('game-options'),title=document.getElementById('game-category');document.querySelectorAll('[data-category]').forEach(btn=>btn.addEventListener('click',()=>{const cat=btn.dataset.category;document.querySelectorAll('[data-category]').forEach(x=>x.classList.toggle('active',x===btn));title.textContent=cat[0].toUpperCase()+cat.slice(1);opts.replaceChildren();for(const [name,options] of Object.entries(groups[cat])){const label=document.createElement('label');label.textContent=name;const select=document.createElement('select');select.setAttribute('aria-label',name);for(const o of options){const option=document.createElement('option');option.value=o;option.textContent=o;select.appendChild(option)}select.value=values[name]||options[0];select.addEventListener('change',()=>{values[name]=select.value;document.getElementById('game-status').textContent='Choice recorded; visual preview requires approved model.'});label.appendChild(select);opts.appendChild(label)}panel.hidden=false;}));document.getElementById('save-look').addEventListener('click',()=>{opts.querySelectorAll('select').forEach(x=>{values[x.getAttribute('aria-label')]=x.value});try{localStorage.setItem('bkbk-female-choices',JSON.stringify(values));document.getElementById('game-status').textContent='Choices saved on this device.'}catch{document.getElementById('game-status').textContent='Unable to save on this device.'}})})();
-</script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#f8f5ef">
+<title>BKBK Avatar Studio | Female Dressing Room</title>
+<link rel="stylesheet" href="avatar-room-preview.css">
+<script type="module" src="avatar-room-preview.js"></script>
+</head>
+<body data-avatar-sex="female">
+<header class="site-header"><strong>BKBK AVATAR STUDIO</strong><a href="bkbk-avatar-reception.html">← Reception</a></header>
+<main class="shell">
+<p class="eyebrow">BKBK / Character Creator / 3D Prototype</p>
+<h1 class="heading">Female Dressing Room</h1>
+<p class="intro">Create your character inside the dressing room. Each control changes the 3D model — not a photograph.</p>
+<div class="workspace">
+<section class="stage" id="stage" data-day="assets/419E8041-867B-44AD-B17A-5C8B7BAABD12.png" data-night="assets/5F60E49E-18EE-41D3-9A91-AFF8A390CA3A.png" data-mode="day" style="background-image:url('assets/419E8041-867B-44AD-B17A-5C8B7BAABD12.png')" aria-label="Interactive three-dimensional female avatar">
+<canvas id="avatar-canvas" aria-label="Rotate the interactive 3D character by dragging. Use the turn buttons as an alternative."></canvas>
+<div class="stage-top"><span class="stage-kicker">BKBK • LIVE 3D PREVIEW</span><button id="night-mode" type="button">☾ Night view</button></div>
+<div class="state" id="load-status" role="status">Loading 3D character…</div>
+<div class="view-nav">
+<button type="button" data-turn="-1" aria-label="Turn avatar left">↶ Turn left</button>
+<button type="button" id="motion">Walk in place</button>
+<button type="button" data-turn="1" aria-label="Turn avatar right">Turn right ↷</button>
+</div>
+</section>
+<section class="control-card" aria-label="Customization controls">
+<div class="card-top"><h2>Your character</h2><p>Real rigged 3D model · rotate · personalize · save</p></div>
+<div class="tabs" role="tablist" aria-label="Customization categories">
+<button type="button" data-tab="look" role="tab" aria-selected="true">Clothes</button>
+<button type="button" data-tab="hair" role="tab" aria-selected="false">Hair</button>
+<button type="button" data-tab="face" role="tab" aria-selected="false">Face</button>
+<button type="button" data-tab="body" role="tab" aria-selected="false">Body</button>
+</div>
+<div class="section" data-panel="look" role="tabpanel"><h3>Wardrobe</h3>
+<div class="field"><label for="outfit">Outfit silhouette</label><select id="outfit" data-setting="outfit"><option value="dress">Evening dress</option><option value="abaya">Abaya</option><option value="casual">Casual outfit</option></select></div>
+<div class="two-fields">
+<div class="field"><label for="fabric">Clothing color</label><input id="fabric" type="color" data-setting="fabric" value="#805b64"></div>
+<div class="field"><label for="accent">Detail color</label><input id="accent" type="color" data-setting="accent" value="#e8dfcc"></div></div>
+</div>
+<div class="section" data-panel="hair" role="tabpanel" hidden><h3>Hair studio</h3>
+<div class="field"><label for="hairStyle">Hairstyle</label><select id="hairStyle" data-setting="hairStyle"><option value="waves">Long waves</option><option value="bob">Soft bob</option><option value="bun">Elegant bun</option></select></div>
+<div class="field"><label for="hair">Hair color</label><input id="hair" type="color" data-setting="hair" value="#352721"></div>
+</div>
+<div class="section" data-panel="face" role="tabpanel" hidden><h3>Face & complexion</h3>
+<div class="field"><label for="skin">Skin tone</label><input id="skin" type="color" data-setting="skin" value="#c48e72"></div>
+<div class="field"><label for="eyes">Eye color</label><input id="eyes" type="color" data-setting="eyes" value="#514135"></div>
+<div class="field"><label for="face">Face width</label><input id="face" type="range" data-setting="face" min="85" max="115" value="100"></div>
+</div>
+<div class="section" data-panel="body" role="tabpanel" hidden><h3>Body shape</h3>
+<div class="field"><label for="body">Body build</label><input id="body" type="range" data-setting="body" min="85" max="115" value="100"></div>
+</div>
+<div class="actions"><button class="primary" id="save-avatar" type="button">Save character</button><button id="reset-avatar" type="button">Reset</button></div>
+<p id="save-status" class="save-status" role="status"></p>
+<p class="smallprint">Review version: visible 3D changes and basic skeleton motion. Full face sculpting, fitted modular clothing and game-world movement need production assets. No purchases or account required.</p>
+</section>
+</div></main></body></html>
