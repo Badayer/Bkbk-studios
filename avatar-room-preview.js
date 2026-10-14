@@ -1,6 +1,6 @@
 
-import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.180.0/+esm';
-import {GLTFLoader} from 'https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/loaders/GLTFLoader.js/+esm';
+import * as THREE from 'three';
+import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 
 const $ = id => document.getElementById(id);
 const sex = document.body.dataset.avatarSex === 'male' ? 'male' : 'female';
@@ -28,7 +28,7 @@ const fill=new THREE.DirectionalLight(0xdfe7ff,1.8);fill.position.set(3,2,3);sce
 const rim=new THREE.DirectionalLight(0xfff2cf,1.0);rim.position.set(2,3,-3);scene.add(rim);
 const root=new THREE.Group();scene.add(root);
 let model=null,bodyMesh=null,eyesMesh=null,browsMesh=null,headBone=null,hairGroup=null,clothesGroup=null;
-let motion='idle',time=0,rotation=0,dragging=false,lastX=0,walkLegs=[],walkArms=[];
+let motion='idle',time=0,rotation=0,dragging=false,lastX=0,walkLegs=[],walkArms=[],waveArm=null,waveForearm=null;
 const mat=(color,roughness=.84)=>new THREE.MeshStandardMaterial({color,roughness,metalness:0,side:THREE.DoubleSide});
 const make=(geo,color,parent,x=0,y=0,z=0)=>{const mesh=new THREE.Mesh(geo,mat(color));mesh.position.set(x,y,z);parent.add(mesh);return mesh};
 function resize(){
@@ -68,7 +68,12 @@ function tintBase(){
    arr[i*3]=temp.r;arr[i*3+1]=temp.g;arr[i*3+2]=temp.b;
  }
  bodyMesh.geometry.setAttribute('color',new THREE.BufferAttribute(arr,3));
- bodyMesh.material=new THREE.MeshStandardMaterial({color:'#ffffff',vertexColors:true,roughness:.93,metalness:0,side:THREE.DoubleSide,skinning:true});
+ if(!bodyMesh.material.userData.bkbkTint){
+   const previous=bodyMesh.material;
+   bodyMesh.material=new THREE.MeshStandardMaterial({color:'#ffffff',vertexColors:true,roughness:.93,metalness:0,side:THREE.DoubleSide});
+   bodyMesh.material.userData.bkbkTint=true;
+   if(previous&&previous.dispose)previous.dispose();
+ }
  if(browsMesh)browsMesh.material=mat(state.hair);
  if(eyesMesh)eyesMesh.material=mat(state.eyes,.45);
 }
@@ -151,6 +156,9 @@ function useSkeleton(){
  const find=name=>model.getObjectByName(name)||null;
  walkLegs=[find('thigh_l'),find('thigh_r')].filter(Boolean).map(b=>({bone:b,base:b.rotation.x}));
  walkArms=[find('upperarm_l'),find('upperarm_r')].filter(Boolean).map(b=>({bone:b,base:b.rotation.x}));
+ waveArm=find('upperarm_r');waveForearm=find('lowerarm_r');
+ if(waveArm)waveArm.userData.bkbkRestZ=waveArm.rotation.z;
+ if(waveForearm)waveForearm.userData.bkbkRestZ=waveForearm.rotation.z;
  const parts=[];model.traverse(o=>{if(o.isSkinnedMesh||o.isMesh)parts.push(o)});
  bodyMesh=parts.find(o=>/superhero|retopology/i.test(o.name))||parts.sort((a,b)=>b.geometry.getAttribute('position').count-a.geometry.getAttribute('position').count)[0];
  eyesMesh=parts.find(o=>/eyes/i.test(o.name))||parts[1];
@@ -166,7 +174,9 @@ setMessage('Loading 3D character…');
 new GLTFLoader().load('assets/bkbk-avatar-'+sex+'.glb',gltf=>{
  model=gltf.scene;root.add(model);
  useSkeleton();
- setMessage('');
+ stage.dataset.modelReady='true';
+ setMessage('3D character ready — change an outfit, hairstyle or face setting.');
+ window.setTimeout(()=>setMessage(''),2600);
 },undefined,showError);
 
 function changeInput(e){
@@ -198,11 +208,14 @@ $('night-mode').addEventListener('click',()=>{
  $('night-mode').textContent=night?'☀ Day view':'☾ Night view';
 });
 document.querySelectorAll('[data-turn]').forEach(btn=>btn.addEventListener('click',()=>{rotation+=Number(btn.dataset.turn)*Math.PI/6}));
-$('motion').addEventListener('click',()=>{
- motion=motion==='idle'?'walk':'idle';
+function updateMotionControls(){
  $('motion').textContent=motion==='walk'?'Stop walking':'Walk in place';
+ $('wave').textContent=motion==='wave'?'Stop waving':'Wave hello';
  $('motion').classList.toggle('active',motion==='walk');
-});
+ $('wave').classList.toggle('active',motion==='wave');
+}
+$('motion').addEventListener('click',()=>{motion=motion==='walk'?'idle':'walk';updateMotionControls()});
+$('wave').addEventListener('click',()=>{motion=motion==='wave'?'idle':'wave';updateMotionControls()});
 canvas.addEventListener('pointerdown',e=>{dragging=true;lastX=e.clientX;canvas.setPointerCapture(e.pointerId)});
 canvas.addEventListener('pointermove',e=>{if(dragging){rotation+=(e.clientX-lastX)*.011;lastX=e.clientX}});
 canvas.addEventListener('pointerup',()=>dragging=false);
@@ -219,6 +232,8 @@ function frame(){
    const walk=motion==='walk';
    walkLegs.forEach(({bone,base},i)=>bone.rotation.x=base+(walk?Math.sin(time*8+i*Math.PI)*.32:0));
    walkArms.forEach(({bone,base},i)=>bone.rotation.x=base+(walk?Math.sin(time*8+i*Math.PI+Math.PI)*.17:0));
+   if(waveArm)waveArm.rotation.z=(waveArm.userData.bkbkRestZ||0)+(motion==='wave'?-1.05:0);
+   if(waveForearm)waveForearm.rotation.z=(waveForearm.userData.bkbkRestZ||0)+(motion==='wave'?-0.65+Math.sin(time*7)*.25:0);
    model.position.y=walk?Math.sin(time*16)*.012:Math.sin(time*1.5)*.004;
  }
  renderer.render(scene,camera);
