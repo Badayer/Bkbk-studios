@@ -2,58 +2,26 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#f8f5ef">
 <title>BKBK Avatar Studio | Female Dressing Room</title>
-<link rel="stylesheet" href="avatar-room-preview.css">
-<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/"}}</script>
-<script type="module" src="avatar-room-preview.js"></script>
+<meta name="robots" content="noindex">
+<style>
+*{box-sizing:border-box}body{margin:0;min-height:100vh;background:#f5f0e8;color:#2e2b25;font:15px/1.7 system-ui,-apple-system,"Segoe UI",sans-serif}
+header{padding:20px clamp(20px,5vw,64px);display:flex;align-items:center;justify-content:space-between;gap:18px;background:#ede7dc;border-bottom:1px solid #dcd2c3}
+header strong{font-size:12px;letter-spacing:.19em}a{color:#4e594a;text-decoration:none}a:focus-visible{outline:2px solid #5a6851}
+main{max-width:830px;margin:clamp(90px,15vh,160px) auto;padding:0 25px;text-align:center}
+.kicker{letter-spacing:.23em;text-transform:uppercase;font-size:11px;color:#6c665b}
+h1{font:clamp(34px,6vw,57px)/1.12 Georgia,serif;letter-spacing:-.03em;margin:14px 0 20px}
+p{color:#676155;max-width:520px;margin:0 auto 30px}
+.back{display:inline-block;padding:11px 22px;border:1px solid #586651;border-radius:2px}
+</style>
 </head>
-<body data-avatar-sex="female">
-<header class="site-header"><strong>BKBK AVATAR STUDIO</strong><a href="bkbk-avatar-reception.html">← Reception</a></header>
-<main class="shell">
-<p class="eyebrow">BKBK / Character Creator / 3D Prototype</p>
-<h1 class="heading">Female Dressing Room</h1>
-<p class="intro">Create your character inside the dressing room. Each control changes the 3D model — not a photograph.</p>
-<div class="workspace">
-<section class="stage" id="stage" data-day="assets/419E8041-867B-44AD-B17A-5C8B7BAABD12.png" data-night="assets/5F60E49E-18EE-41D3-9A91-AFF8A390CA3A.png" data-mode="day" style="background-image:url('assets/419E8041-867B-44AD-B17A-5C8B7BAABD12.png')" aria-label="Interactive three-dimensional female avatar">
-<canvas id="avatar-canvas" aria-label="Rotate the interactive 3D character by dragging. Use the turn buttons as an alternative."></canvas>
-<div class="stage-top"><span class="stage-kicker">BKBK • LIVE 3D PREVIEW</span><button id="night-mode" type="button">☾ Night view</button></div>
-<div class="state" id="load-status" role="status">Loading 3D character…</div>
-<div class="view-nav">
-<button type="button" data-turn="-1" aria-label="Turn avatar left">↶ Turn left</button>
-<button type="button" id="motion">Walk in place</button>
-<button type="button" id="wave">Wave hello</button>
-<button type="button" data-turn="1" aria-label="Turn avatar right">Turn right ↷</button>
-</div>
-</section>
-<section class="control-card" aria-label="Customization controls">
-<div class="card-top"><h2>Your character</h2><p>Real rigged 3D model · rotate · personalize · save</p></div>
-<div class="tabs" role="tablist" aria-label="Customization categories">
-<button type="button" data-tab="look" role="tab" aria-selected="true">Clothes</button>
-<button type="button" data-tab="hair" role="tab" aria-selected="false">Hair</button>
-<button type="button" data-tab="face" role="tab" aria-selected="false">Face</button>
-<button type="button" data-tab="body" role="tab" aria-selected="false">Body</button>
-</div>
-<div class="section" data-panel="look" role="tabpanel"><h3>Wardrobe</h3>
-<div class="field"><label for="outfit">Outfit silhouette</label><select id="outfit" data-setting="outfit"><option value="dress">Evening dress</option><option value="abaya">Abaya</option><option value="casual">Casual outfit</option></select></div>
-<div class="two-fields">
-<div class="field"><label for="fabric">Clothing color</label><input id="fabric" type="color" data-setting="fabric" value="#805b64"></div>
-<div class="field"><label for="accent">Detail color</label><input id="accent" type="color" data-setting="accent" value="#e8dfcc"></div></div>
-</div>
-<div class="section" data-panel="hair" role="tabpanel" hidden><h3>Hair studio</h3>
-<div class="field"><label for="hairStyle">Hairstyle</label><select id="hairStyle" data-setting="hairStyle"><option value="waves">Long waves</option><option value="bob">Soft bob</option><option value="bun">Elegant bun</option></select></div>
-<div class="field"><label for="hair">Hair color</label><input id="hair" type="color" data-setting="hair" value="#352721"></div>
-</div>
-<div class="section" data-panel="face" role="tabpanel" hidden><h3>Face & complexion</h3>
-<div class="field"><label for="skin">Skin tone</label><input id="skin" type="color" data-setting="skin" value="#c48e72"></div>
-<div class="field"><label for="eyes">Eye color</label><input id="eyes" type="color" data-setting="eyes" value="#514135"></div>
-<div class="field"><label for="face">Face width</label><input id="face" type="range" data-setting="face" min="85" max="115" value="100"></div>
-</div>
-<div class="section" data-panel="body" role="tabpanel" hidden><h3>Body shape</h3>
-<div class="field"><label for="body">Body build</label><input id="body" type="range" data-setting="body" min="85" max="115" value="100"></div>
-</div>
-<div class="actions"><button class="primary" id="save-avatar" type="button">Save character</button><button id="reset-avatar" type="button">Reset</button></div>
-<p id="save-status" class="save-status" role="status"></p>
-<p class="smallprint">Review version: visible 3D changes and basic skeleton motion. Full face sculpting, fitted modular clothing and game-world movement need production assets. No purchases or account required.</p>
-</section>
-</div></main></body></html>
+<body>
+<header><strong>BKBK AVATAR STUDIO</strong><a href="index.html#portfolio">BKBK Studios ↗</a></header>
+<main>
+<div class="kicker">Avatar Studio</div>
+<h1>Female Dressing Room</h1>
+<p>This room is temporarily unavailable while the 3D experience is being redesigned.</p>
+<a class="back" href="index.html#portfolio">Back to BKBK Studios</a>
+</main>
+</body>
+</html>
